@@ -52,7 +52,7 @@ class CreateBoard extends React.Component {
         }
       }
       axios({
-        url: `${apiUrl}/userBoards/Board`,
+        url: `${apiUrl}/userBoards`,
         method: 'POST',
         headers: {
           Authorization: 'Bearer ' + `${this.state.token}`
@@ -83,7 +83,7 @@ class CreateBoard extends React.Component {
       return (
         <div>
           <h3>Create a Board</h3>
-          <Form onSubmit={this.handleSubmit} encType="multipart/form-data">
+          <Form onSubmit={this.handleSubmit}>
             <Form.Control name="createboard" placeholder="Board Name" type="text" value={this.state.boardName} onChange={this.onBoardChangeHandler}/>
             <Form.Control name="topic" placeholder="Topic" type="text" value={this.state.topic} onChange={this.onTopicChangeHandler}/>
             <Form.Control name="description" placeholder="Description" type="text" value={this.state.description} onChange={this.onDescriptionChangeHandler}/>
