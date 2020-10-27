@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+// import withRouter so we can give the signUp component access to the route props
 import { withRouter } from 'react-router-dom'
 
 import { signUp, signIn } from '../../api/auth'
@@ -17,27 +18,37 @@ class SignUp extends Component {
       passwordConfirmation: ''
     }
   }
-
+  // add a handle change to update our state anytime an input changes.
   handleChange = event => this.setState({
     [event.target.name]: event.target.value
   })
-
+  // when the form is submitted, we will make a request to sign up our user
   onSignUp = event => {
     event.preventDefault()
 
-    const { msgAlert, history, setUser } = this.props
+    // desetructure props
+    const { msgAlert, setUser, history } = this.props
 
+    // call signUp, pass it our credentials from this.state
     signUp(this.state)
+      // if we successfully signed up, immediately sign in with our credentials.
       .then(() => signIn(this.state))
+      // if we signed in successfully, then set the user, with the 'user' data we
+      // got back in our response
       .then(res => setUser(res.data.user))
+      // show a message alert that we successfully signed up.
       .then(() => msgAlert({
         heading: 'Sign Up Success',
         message: messages.signUpSuccess,
         variant: 'success'
       }))
+      // if successful, send the user home page.
       .then(() => history.push('/'))
+      // handle signUp failure error
       .catch(error => {
+        // reset(clear) the form
         this.setState({ email: '', password: '', passwordConfirmation: '' })
+        // show signUp failure messages
         msgAlert({
           heading: 'Sign Up Failed with error: ' + error.message,
           message: messages.signUpFailure,

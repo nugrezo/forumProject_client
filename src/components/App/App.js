@@ -14,20 +14,45 @@ class App extends Component {
     super()
 
     this.state = {
+      // state to keep of the currently signed in user
+      // we do this so we can keep track of the users token to make
+      // authenticated request to our API
       user: null,
+      // this is an array of messages for our user. We can use it to notify our
+      // user when an action succeeds or fails
       msgAlerts: []
     }
   }
-
+  // create a helper function that will take a user as a parameter and update the
+  // user state
+  // we will use this function anytime we use the application(to keep track of token)
   setUser = user => this.setState({ user })
-
+  // create a helper function that will reset the user back to null
+  // we will use this when we sign out to clear user.
   clearUser = () => this.setState({ user: null })
 
+  // create a function that will show a message alert to the user. The message will
+  // disappear after 5 seconds. This message alert accepts 3 properties.
+  // 1. heading - the title 2. the body(main text) 3. variant(the color or style
+  // by react boostrap)
   msgAlert = ({ heading, message, variant }) => {
-    this.setState({ msgAlerts: [...this.state.msgAlerts, { heading, message, variant }] })
+    this.setState({
+      // set our msgAlert state array to new array
+      // that has all of the messages from our existing msgAlert
+      // with our new message alert added at the end
+      msgAlerts: [...this.state.msgAlerts, { heading, message, variant }] })
+  }
+
+  componentDidMount () {
+    this.msgAlert({
+      heading: 'Welcome!',
+      message: 'Welcome to the home page!',
+      variant: 'info'
+    })
   }
 
   render () {
+    // destructure our msgAmert and user state
     const { msgAlerts, user } = this.state
 
     return (
