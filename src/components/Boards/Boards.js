@@ -4,7 +4,7 @@ import apiUrl from '../../apiConfig'
 import Card from 'react-bootstrap/Card'
 import DateTimeDisplay from './../DateTimeDisplay/DateTimeDisplay'
 
-class Board extends React.Component {
+class Boards extends React.Component {
   constructor (props) {
     super(props)
     this.state = this.state = {
@@ -36,19 +36,24 @@ class Board extends React.Component {
       jsx = <p>Loading...</p>
       // if no books
     } else if (this.state.userBoards.length === 0) {
-      jsx = <p>No boards, please add one. </p>
+      jsx = <p>No images, please add one. </p>
       // when the request is complete
     } else {
       jsx = (
-        <div className="boards">
+        <div className="userBoard">
           {this.state.userBoards.map(userBoard => {
             return <Card key={userBoard._id} style={{ width: '24rem' }} className="cards">
               <div className="pt-2 pr-2 pl-2 pb-2 mb-0 bg-gradient-primary text-white">
                 <Card.Header>{userBoard.owner.email}</Card.Header>
                 <div className="bg-gradient-dark">
+                  <Card.Img variant="top" src={userBoard.boardName} />
                   <Card.Body>
                     <Card.Title>{userBoard.description}</Card.Title>
+                    <Card.Text>Tag: &nbsp;
+                      {userBoard.tag}
+                    </Card.Text>
                     <Card.Text>
+                      <br/>
                     Created on: &nbsp;
                       <DateTimeDisplay dateTimeString={userBoard.createdAt}></DateTimeDisplay>
                     </Card.Text>
@@ -61,12 +66,12 @@ class Board extends React.Component {
       )
     }
     return (
-      <div className="board">
-        <h2>My Boards History</h2>
+      <div className="userBoard">
+        <h2> Find All Boards Created By All Signed In Users</h2>
         {jsx}
       </div>
     )
   }
 }
 
-export default Board
+export default Boards

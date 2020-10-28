@@ -9,6 +9,8 @@ export default {
   createBoardSuccess: 'Board was successfully created!',
   createBoardFailure: 'Could not create the board!',
   updateBoardSuccess: 'Succesfully updated the board!',
-  updateBoardFailure: 'Could not update the board!'
+  updateBoardFailure: 'Could not update the board!',
+  deleteBoardSuccess: 'Deleted the board successfully',
+  deleteBoardFailure: 'Could not delete the board!'
 
 }

@@ -77,6 +77,7 @@ class CreateBoard extends React.Component {
             variant: 'danger'
           })
         })
+        .catch(console.error)
     }
 
     render () {
