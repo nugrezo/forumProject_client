@@ -7,6 +7,8 @@ export default {
   changePasswordSuccess: 'Password changed successfully!',
   changePasswordFailure: 'Failed to change passwords. Check your old password and try again.',
   createBoardSuccess: 'Board was successfully created!',
-  createBoardFailure: 'Could not create the board!'
+  createBoardFailure: 'Could not create the board!',
+  updateBoardSuccess: 'Succesfully updated the board!',
+  updateBoardFailure: 'Could not update the board!'
 
 }
