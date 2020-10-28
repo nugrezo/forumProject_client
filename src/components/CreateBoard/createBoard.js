@@ -68,7 +68,7 @@ class CreateBoard extends React.Component {
           message: messages.createBoardSuccess,
           variant: 'success'
         }))
-        .then(() => history.push('/user-boards'))
+        .then(() => history.push('/boards'))
         .catch(error => {
           this.setState({ boardName: '', topic: '', description: '' })
           msgAlert({

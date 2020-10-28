@@ -9,6 +9,7 @@ import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
 import CreateBoard from '../CreateBoard/createBoard'
+import Board from '../Boards/board'
 
 class App extends Component {
   constructor () {
@@ -80,8 +81,8 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword msgAlert={this.msgAlert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} exact path='/user-boards' render={() => (
-            <allBoards user={user} />
+          <AuthenticatedRoute user={user} exact path='/boards' render={() => (
+            <Board user={user} />
           )} />
           <AuthenticatedRoute user={user} exact path='/create-board' render={() => (
             <CreateBoard msgAlert={this.msgAlert} user={user} />
