@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import Card from 'react-bootstrap/Card'
+import DateTimeDisplay from './../DateTimeDisplay/DateTimeDisplay'
 
 class Board extends React.Component {
   constructor (props) {
@@ -14,7 +15,7 @@ class Board extends React.Component {
   } // constructor
   componentDidMount () {
     axios({
-      url: `${apiUrl}/userBoards`,
+      url: `${apiUrl}/userBoards/orderdByDateDesc`,
       method: 'GET',
       headers: {
         Authorization: 'Bearer ' + `${this.state.token}`
@@ -43,16 +44,14 @@ class Board extends React.Component {
           {this.state.userBoards.map(userBoard => {
             return <Card key={userBoard._id} style={{ width: '24rem' }} className="cards">
               <div className="pt-2 pr-2 pl-2 pb-2 mb-0 bg-gradient-primary text-white">
-                <Card.Header>{userBoard.boardName}</Card.Header>
+                <Card.Header>{userBoard.owner.email}</Card.Header>
                 <div className="bg-gradient-dark">
-                  <Card.Text>Tag: &nbsp;
-                    {userBoard.owner.email}
-                  </Card.Text>
                   <Card.Body>
-                    <Card.Text>Tag: &nbsp;
-                      {userBoard.topic}
-                    </Card.Text>
                     <Card.Title>{userBoard.description}</Card.Title>
+                    <Card.Text>
+                    Created on: &nbsp;
+                      <DateTimeDisplay dateTimeString={userBoard.createdAt}></DateTimeDisplay>
+                    </Card.Text>
                   </Card.Body>
                 </div>
               </div>
@@ -63,7 +62,7 @@ class Board extends React.Component {
     }
     return (
       <div className="board">
-        <h2>My Boards</h2>
+        <h2>My Boards History</h2>
         {jsx}
       </div>
     )
