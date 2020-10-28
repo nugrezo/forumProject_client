@@ -10,6 +10,7 @@ import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
 import CreateBoard from '../CreateBoard/createBoard'
 import Boards from '../Boards/Boards'
+import UserBoard from '../UserBoard/UserBoard'
 
 class App extends Component {
   constructor () {
@@ -86,6 +87,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} exact path='/boards' render={() => (
             <Boards msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/user-board' render={() => (
+            <UserBoard msgAlert={this.msgAlert} user={user} />
           )} />
         </main>
       </Fragment>

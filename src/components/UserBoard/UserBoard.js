@@ -4,7 +4,7 @@ import apiUrl from '../../apiConfig'
 import Card from 'react-bootstrap/Card'
 import DateTimeDisplay from './../DateTimeDisplay/DateTimeDisplay'
 
-class Boards extends React.Component {
+class UserBoard extends React.Component {
   constructor (props) {
     super(props)
     this.state = this.state = {
@@ -15,7 +15,7 @@ class Boards extends React.Component {
   } // constructor
   componentDidMount () {
     axios({
-      url: `${apiUrl}/userBoards/orderdByDateDesc`,
+      url: `${apiUrl}/userBoards/`,
       method: 'GET',
       headers: {
         Authorization: 'Bearer ' + `${this.state.token}`
@@ -64,12 +64,12 @@ class Boards extends React.Component {
       )
     }
     return (
-      <div className="allBoard">
-        <h2> Find All Boards Created By All Signed In Users</h2>
+      <div className="userBoard">
+        <h2> My Created Boards </h2>
         {jsx}
       </div>
     )
   }
 }
 
-export default Boards
+export default UserBoard
