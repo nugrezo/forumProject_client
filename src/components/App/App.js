@@ -11,6 +11,8 @@ import ChangePassword from '../ChangePassword/ChangePassword'
 import CreateBoard from '../CreateBoard/createBoard'
 import Boards from '../Boards/Boards'
 import UserBoard from '../UserBoard/UserBoard'
+import UserBoardProfile from '../UserBoardProfile/UserBoardProfile'
+import UserBoardUpdate from '../UserBoardUpdate/UserBoardUpdate'
 
 class App extends Component {
   constructor () {
@@ -91,6 +93,32 @@ class App extends Component {
           <AuthenticatedRoute user={user} exact path='/user-board' render={() => (
             <UserBoard msgAlert={this.msgAlert} user={user} />
           )} />
+          <AuthenticatedRoute user={user} exact path='/delete-user-board' render={() => (
+            <UserBoard msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/user-board-profile/:id' render={(userBoardProps) => {
+            const { match, history } = userBoardProps
+            const currentBoardId = match.params.id
+            return (
+              <UserBoardProfile
+                id={currentBoardId}
+                user={user}
+                msgAlert={this.msgAlert}
+                history={history}
+              />
+            )
+          }} />
+          <AuthenticatedRoute user={user} exact path='/user-board-update/:id' render={(userBoardProps) => {
+            const { match } = userBoardProps
+            const currentBoardId = match.params.id
+            return (
+              <UserBoardUpdate
+                id={currentBoardId}
+                user={user}
+                msgAlert={this.msgAlert}
+              />
+            )
+          }} />
         </main>
       </Fragment>
     )

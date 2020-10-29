@@ -29,6 +29,7 @@ class UserBoard extends React.Component {
       })
       .catch(console.error)
   } // componentDidMount
+
   render () {
     let jsx
     // while the books are loading
@@ -36,7 +37,7 @@ class UserBoard extends React.Component {
       jsx = <p>Loading...</p>
       // if no books
     } else if (this.state.userBoards.length === 0) {
-      jsx = <p>No images, please add one. </p>
+      jsx = <p>No boards, please add one. </p>
       // when the request is complete
     } else {
       jsx = (
