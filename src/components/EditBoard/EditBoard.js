@@ -81,7 +81,7 @@ class EditBoard extends Component {
         message: messages.deleteBoardSuccess,
         variant: 'success'
       }))
-      .then(history.push('/boards'))
+      .then(history.push('/create-board'))
       .catch(error => {
         this.setState({ boardName: '', topic: '', description: '' })
         msgAlert({
@@ -172,18 +172,19 @@ class EditBoard extends Component {
             <Card style={{ width: '24rem' }} >
               <div className="pt-2 pr-2 pl-2 pb-2 mb-0 bg-gradient-primary text-white">
                 <Card.Header>{this.state.owner.email}</Card.Header>
-                <Card.Header>{this.state.topic}</Card.Header>
                 <div className="bg-gradient-dark">
                   <Card.Body>
                     {!this.state.formShown &&
                     <div>
-                      <Card.Title>{this.state.description}</Card.Title>
+                      <Card.Title>Board Name: &nbsp;{this.state.boardName}</Card.Title>
+                      <Card.Title>Topic: &nbsp;{this.state.topic}</Card.Title>
+                      <Card.Title>Description: &nbsp;{this.state.description}</Card.Title>
                     </div>
                     }
                     {this.state.formShown &&
                       <form onSubmit={this.handleSubmit}>
                         <Card.Text>
-                          <input name="boardName" type="text" value={this.state.boardName} onChange={this.onBoardNameChangeHandler}/>
+                          <input name="boardName" type="text" value={this.state.boardName} onChange={this.onBoardNameChangeHandler} Board Name/>
                           <input name="topic" type="text" value={this.state.topic} onChange={this.onTopicChangeHandler}/>
                           <input name="description" type="text" value={this.state.description} onChange={this.onDescriptionChangeHandler}/>
                         </Card.Text>
