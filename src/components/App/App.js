@@ -11,6 +11,7 @@ import ChangePassword from '../ChangePassword/ChangePassword'
 import CreateBoard from '../CreateBoard/createBoard'
 import Boards from '../Boards/Boards'
 import UserBoard from '../UserBoard/UserBoard'
+import EditBoard from '../EditBoard/EditBoard'
 
 class App extends Component {
   constructor () {
@@ -91,6 +92,18 @@ class App extends Component {
           <AuthenticatedRoute user={user} exact path='/user-board' render={() => (
             <UserBoard msgAlert={this.msgAlert} user={user} />
           )} />
+          <AuthenticatedRoute user={user} exact path='/user-board/:id' render={(userBoardProps) => {
+            const { match, history } = userBoardProps
+            const currentBoardId = match.params.id
+            return (
+              <EditBoard
+                id={currentBoardId}
+                user={user}
+                msgAlert={this.msgAlert}
+                history={history}
+              />
+            )
+          }} />
         </main>
       </Fragment>
     )

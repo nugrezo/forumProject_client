@@ -10,7 +10,7 @@ import { withRouter } from 'react-router'
 class UserBoard extends React.Component {
   constructor (props) {
     super(props)
-    this.state = this.state = {
+    this.state = {
       isLoaded: false,
       userBoards: [],
       token: this.props.user.token
@@ -32,31 +32,6 @@ class UserBoard extends React.Component {
       })
       .catch(console.error)
   } // componentDidMount
-
-  handleDelete = event => {
-    axios({
-      url: apiUrl + '/items/' + this.props.match.params.id,
-      method: 'DELETE',
-      headers: {
-        'Authorization': `Token token=${this.props.user.token}`
-      }
-    })
-      .then(() => this.props.history.push('/list'))
-      .then(() => (
-        this.props.msgAlert({
-          heading: 'Delete Success',
-          variant: 'success',
-          message: 'An item has been successfully deleted!'
-        })
-      ))
-      .catch(() => (
-        this.props.msgAlert({
-          heading: 'Delete Failure ',
-          variant: 'danger',
-          message: 'An item has not been deleted!'
-        })
-      ))
-  }
 
   render () {
     let jsx
@@ -89,10 +64,9 @@ class UserBoard extends React.Component {
               </div>
               <div>
                 <ul>
-                  <Link to={`/item/${this.props.match.params.id}/edit`}>
-                    <Button className='button'>Edit</Button>
+                  <Link to={`/user-board/${userBoard._id}`}>
+                    <Button className='button'>Board Actions</Button>
                   </Link>
-                  <Button className='button'onClick={this.handleDelete}>Delete</Button>
                 </ul>
               </div>
             </Card>
