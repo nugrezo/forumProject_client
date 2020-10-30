@@ -77,4 +77,4 @@ Backend Github Repository
 
   ## Wireframe
 
-![wireframe](https://imgur.com/z1mAqR9)
+[img]https://i.imgur.com/z1mAqR9.jpg[/img]
