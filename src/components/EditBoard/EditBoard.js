@@ -9,8 +9,9 @@ import DateTimeDisplay from './../DateTimeDisplay/DateTimeDisplay'
 class EditBoard extends Component {
   constructor (props) {
     super(props)
+    this.boardName = ''
+    this.tempTopic = ''
     this.tempDescription = ''
-    this.tempTag = ''
     this.state = {
       isLoaded: false,
       isUpdated: false,
@@ -38,8 +39,8 @@ class EditBoard extends Component {
           isLoaded: true,
           board: null,
           boardName: response.data.userBoards.boardName,
+          topic: response.data.userBoards.topic,
           description: response.data.userBoards.description,
-          tag: response.data.userBoards.tag,
           owner: response.data.userBoards.owner,
           formShown: false,
           tempDescription: null,
@@ -80,9 +81,9 @@ class EditBoard extends Component {
         message: messages.deleteBoardSuccess,
         variant: 'success'
       }))
-      .then(history.push('/user-board'))
+      .then(history.push('/boards'))
       .catch(error => {
-        this.setState({ boardName: '', description: '', tag: '' })
+        this.setState({ boardName: '', description: '', topic: '' })
         msgAlert({
           heading: 'Could not delete the Board, failed with error: ' + error.messages,
           message: messages.deleteBoardFailure,
@@ -104,7 +105,7 @@ class EditBoard extends Component {
   onTopicChangeHandler = (event) => {
     const userInput = event.target.value
     // const userBoardCopy = Object.assign({}, this.state.userBoard)
-    // userBoardCopy.tag = userInput
+    // userBoardCopy.topic = userInput
     this.setState({
       // userBoard: userBoardCopy
       topic: userInput
@@ -114,7 +115,7 @@ class EditBoard extends Component {
   onDescriptionChangeHandler = (event) => {
     const userInput = event.target.value
     // const userBoardCopy = Object.assign({}, this.state.userBoard)
-    // userBoardCopy.tag = userInput
+    // userBoardCopy.topic = userInput
     this.setState({
       // userBoard: userBoardCopy
       description: userInput
