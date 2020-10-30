@@ -1,5 +1,5 @@
 
-# Black Board Project
+## Black Board Project
 This is a full stack application that allows user to create, read, update and delete
 the board. This application allows user to sign-up with an e-mail and password. The
 password is hashed by the hash password scripts for security purpose. Once signed in the user

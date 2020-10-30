@@ -18,7 +18,7 @@ class UserBoard extends React.Component {
   } // constructor
   componentDidMount () {
     axios({
-      url: `${apiUrl}/userBoards/orderdByDateDesc`,
+      url: `${apiUrl}/userBoards`,
       method: 'GET',
       headers: {
         Authorization: 'Bearer ' + `${this.state.token}`

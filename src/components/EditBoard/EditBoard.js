@@ -77,13 +77,13 @@ class EditBoard extends Component {
     })
       .then(response => this.setState({ userBoardId: this.state.createdUserBoardId }))
       .then(() => msgAlert({
-        heading: 'Successfully Deleted an Board',
+        heading: 'Successfully Deleted the Board',
         message: messages.deleteBoardSuccess,
         variant: 'success'
       }))
       .then(history.push('/boards'))
       .catch(error => {
-        this.setState({ boardName: '', description: '', topic: '' })
+        this.setState({ boardName: '', topic: '', description: '' })
         msgAlert({
           heading: 'Could not delete the Board, failed with error: ' + error.messages,
           message: messages.deleteBoardFailure,
@@ -124,16 +124,16 @@ class EditBoard extends Component {
   handleSubmit = (event) => {
     event.preventDefault()
     const { msgAlert } = this.props
-    // make a POST request to API /books route with book data
+    // make a POST request to API
     axios({
       url: `${apiUrl}/userBoards/${this.state.id}`,
       method: 'PATCH',
       headers: { 'Authorization': `Bearer ${this.state.token}` },
       data: {
-        userBoard: {
-          boardName: this.state.boardName,
-          topic: this.state.topic,
-          description: this.state.description
+        'userBoard': {
+          'boardName': this.state.boardName,
+          'topic': this.state.topic,
+          'description': this.state.description
         }
       }
     })
@@ -145,7 +145,7 @@ class EditBoard extends Component {
         })
       })
       .then(() => msgAlert({
-        heading: 'Successfully Updated an Board',
+        heading: 'Successfully Updated the Board',
         message: messages.updateBoardSuccess,
         variant: 'success'
       }))
@@ -162,7 +162,6 @@ class EditBoard extends Component {
 
   render () {
     let jsx
-    // while the book is loading
     if (this.state.isLoaded === false) {
       jsx = <p>Loading...</p>
       // when the request is complete
