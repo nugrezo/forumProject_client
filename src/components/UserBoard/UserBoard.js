@@ -64,7 +64,7 @@ class UserBoard extends React.Component {
               </div>
               <div>
                 <ul>
-                  <Link to={`/user-board/${userBoard._id}`}>
+                  <Link to={`/user-board-edit/${userBoard._id}`}>
                     <Button className='button'>Board Actions</Button>
                   </Link>
                 </ul>
@@ -77,7 +77,7 @@ class UserBoard extends React.Component {
     }
     return (
       <div className="userBoard">
-        <h2> My Created Boards </h2>
+        <h4>My Boards</h4>
         {jsx}
       </div>
     )

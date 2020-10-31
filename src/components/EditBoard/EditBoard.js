@@ -9,7 +9,7 @@ import DateTimeDisplay from './../DateTimeDisplay/DateTimeDisplay'
 class EditBoard extends Component {
   constructor (props) {
     super(props)
-    this.boardName = ''
+    this.tempBoardName = ''
     this.tempTopic = ''
     this.tempDescription = ''
     this.state = {
@@ -44,8 +44,7 @@ class EditBoard extends Component {
           owner: response.data.userBoards.owner,
           formShown: false,
           tempDescription: null,
-          createdAt: response.data.userBoards.createdAt,
-          updatedAt: response.data.userBoards.updatedAt
+          createdAt: response.data.userBoards.createdAt
         })
       })
       .catch(console.error)
@@ -62,7 +61,8 @@ class EditBoard extends Component {
       formShown: false,
       boardName: this.tempBoardName,
       topic: this.tempTopic,
-      description: this.tempDescription })
+      description: this.tempDescription
+    })
   }
 
   handleDelete = () => {
@@ -124,26 +124,23 @@ class EditBoard extends Component {
   handleSubmit = (event) => {
     event.preventDefault()
     const { msgAlert } = this.props
-    // make a POST request to API
     axios({
       url: `${apiUrl}/userBoards/${this.state.id}`,
       method: 'PATCH',
       headers: { 'Authorization': `Bearer ${this.state.token}` },
       data: {
-        'userBoard': {
-          'boardName': this.state.boardName,
-          'topic': this.state.topic,
-          'description': this.state.description
+        userBoard: {
+          boardName: this.state.boardName,
+          topic: this.state.topic,
+          description: this.state.description
         }
       }
     })
-      .then(response => {
+      .then(response =>
         this.setState({
           isUpdated: true,
-          formShown: false,
-          updatedAt: response.data.userBoards.updatedAt
-        })
-      })
+          formShown: false
+        }))
       .then(() => msgAlert({
         heading: 'Successfully Updated the Board',
         message: messages.updateBoardSuccess,
@@ -183,9 +180,13 @@ class EditBoard extends Component {
                     }
                     {this.state.formShown &&
                       <form onSubmit={this.handleSubmit}>
-                        <Card.Text>
+                        <Card.Text>Board Name: &nbsp;
                           <input name="boardName" type="text" value={this.state.boardName} onChange={this.onBoardNameChangeHandler} Board Name/>
+                        </Card.Text>
+                        <Card.Text>Topic: &nbsp;
                           <input name="topic" type="text" value={this.state.topic} onChange={this.onTopicChangeHandler}/>
+                        </Card.Text>
+                        <Card.Text>Description: &nbsp;
                           <input name="description" type="text" value={this.state.description} onChange={this.onDescriptionChangeHandler}/>
                         </Card.Text>
                         <Card.Text>
@@ -197,10 +198,6 @@ class EditBoard extends Component {
                     <Card.Text>
                     Created on: &nbsp;
                       <DateTimeDisplay dateTimeString={this.state.createdAt}></DateTimeDisplay>
-                    </Card.Text>
-                    <Card.Text>
-                    Updated on: &nbsp;
-                      <DateTimeDisplay dateTimeString={this.state.updatedAt}></DateTimeDisplay>
                     </Card.Text>
                   </Card.Body>
                 </div>
@@ -217,7 +214,7 @@ class EditBoard extends Component {
     }
     return (
       <div>
-        <h2>Edit Board Page</h2>
+        <h4>Delete or Edit Board</h4>
         {jsx}
       </div>
     )

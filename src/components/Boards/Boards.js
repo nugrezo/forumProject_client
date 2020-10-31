@@ -65,7 +65,7 @@ class Boards extends React.Component {
     }
     return (
       <div className="allBoard">
-        <h2> Find All Boards Created By All Signed In Users</h2>
+        <h4> All Boards created by all signed-in users</h4>
         {jsx}
       </div>
     )

@@ -83,7 +83,7 @@ class CreateBoard extends React.Component {
     render () {
       return (
         <div>
-          <h3>Create a Board</h3>
+          <h4>Create a Board</h4>
           <Form onSubmit={this.handleSubmit}>
             <Form.Control name="createboard" placeholder="Board Name" type="text" value={this.state.boardName} onChange={this.onUserBoardChangeHandler}/>
             <Form.Control name="topic" placeholder="Topic" type="text" value={this.state.topic} onChange={this.onTopicChangeHandler}/>
