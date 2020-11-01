@@ -64,10 +64,14 @@ teach and publish his lesson or description about the book.
 
 ## Important Links
 
-Deployed Frontend
-Deployed Backend
-Frontend Github Repository
-Backend Github Repository
+1. Deployed Frontend
+    https://nugrezo.github.io/forumProject_client/
+2. Deployed Backend
+    https://hidden-gorge-21669.herokuapp.com
+3. Frontend Github Repository
+    https://github.com/nugrezo/forumProject_client
+4. Backend Github Repository
+    https://github.com/nugrezo/forumProject_api
 
 ## Unsolved Problems/Reach Goals
 - Add search tab to search board
